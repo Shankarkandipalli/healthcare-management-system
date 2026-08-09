@@ -1,4 +1,4 @@
-/*
+
 package com.healthcare_management_system.users.service.Impl;
 
 
@@ -21,7 +21,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+   // private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
 
@@ -65,4 +65,4 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 }
-*/
+
