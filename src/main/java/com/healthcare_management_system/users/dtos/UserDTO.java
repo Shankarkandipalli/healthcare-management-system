@@ -14,13 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class UserDTO {
-    private int id;
+    private Long id;
     private String name;
+    private String phoneNumber;
     private String email;
     @JsonIgnore
     private String password;
     private String profilePicture;
     private List<RoleDTO> roles;
     private LocalDateTime createdAt;
-    private String phoneNumber;
+
 }

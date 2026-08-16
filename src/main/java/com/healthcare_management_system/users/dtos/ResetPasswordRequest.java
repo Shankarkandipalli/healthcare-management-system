@@ -16,7 +16,7 @@ public class ResetPasswordRequest {
     private String email;
 
     @NotBlank(message = "Password is required")
-    private String password;
+    private String NewPassword;
 
     @NotBlank(message = "Reset code is required")
     private String code;

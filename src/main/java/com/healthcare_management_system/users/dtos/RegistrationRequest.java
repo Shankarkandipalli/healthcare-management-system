@@ -21,11 +21,11 @@ public class RegistrationRequest {
     @NotBlank(message = "Password cannot be blank")
     private String password;
     private List<String> roles;
-    private Specialization specialization;
     @NotBlank(message = "Specialization cannot be blank")
-    private String Specialization;
+    private Specialization specialization;
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
+    private String licenseNumber;
 
 
 
