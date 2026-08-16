@@ -140,7 +140,7 @@ public class AuthServiceImpl implements AuthService {
     private void sendRegistrationEmail(RegistrationRequest request, User user) {
         NotificationDTO welcomeEmail = NotificationDTO.builder()
                 .recipient(user.getEmail())
-                .subject("Welcome to DAT Health!")
+                .subject("Welcome to STAR Health!")
                 .templateName("welcome")
                 .message("Thank you for registering. Your account is ready.")
                 .templateVariables(Map.of(
@@ -187,7 +187,11 @@ public class AuthServiceImpl implements AuthService {
         String token = jwtService.generateToken(user.getEmail());
         log.debug("JWT token generated successfully for email: {}", user.getEmail());
         LoginResponse loginResponse = LoginResponse.builder()
-                .roles(user.getRoles().stream().map(Role::getName).toList())
+                .name(user.getName())
+                .email(user.getEmail())
+                .roles(user.getRoles().stream()
+                        .map(Role::getName)
+                        .toList())
                 .token(token)
                 .build();
         log.info("Login successful for email: {} with roles: {}", user.getEmail(),

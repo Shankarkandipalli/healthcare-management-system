@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -154,7 +155,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public ApiResponse<List<UserDTO>> getAllUsers() {
         log.info("Fetching all users");
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAll(
+                Sort.by(Sort.Direction.DESC, "id"));
         log.debug("Total users retrieved: {}", users.size());
         List<UserDTO> userDTOs = users.stream()
                 .map(user -> modelMapper.map(user, UserDTO.class)).toList();
@@ -197,7 +199,6 @@ public class UserServiceImpl implements UserService {
         User user = getCurrentUsers();
         log.info("Uploading profile picture for user: {}", user.getEmail());
         try {
-            //backend location for saving images
             String uploadDir = "uploads/profile-pictures/";
             Path uploadPath = Paths.get(uploadDir);
 
