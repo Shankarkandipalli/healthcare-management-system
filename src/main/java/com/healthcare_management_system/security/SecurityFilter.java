@@ -33,7 +33,7 @@ public class SecurityFilter {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
 
-        httpSecurity
+       /* httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(req ->
@@ -46,9 +46,9 @@ public class SecurityFilter {
                 );
 
         return httpSecurity.build();
-    }
+    }*/
 
-        /*httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .exceptionHandling(ex ->
                         ex.accessDeniedHandler(customAccessDenialHandler)
@@ -60,10 +60,10 @@ public class SecurityFilter {
                         mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return httpSecurity.build();*/
+        return httpSecurity.build();
     }
 
-   /* @Bean
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -71,5 +71,6 @@ public class SecurityFilter {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {
         return authenticationConfiguration.getAuthenticationManager();
-    }*/
+    }
+}
 

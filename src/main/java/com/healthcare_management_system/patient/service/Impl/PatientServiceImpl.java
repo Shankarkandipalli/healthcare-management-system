@@ -31,7 +31,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public ApiResponse<PatientDTO> getPatientProfile() {
         log.info("Attempting to retrieve patient profile for current user");
-        User user = userService.getCurrentUser();
+        User user = userService.getCurrentUsers();
         log.debug("Current user identified. User ID: {}, Email: {}", user.getId(), user.getEmail());
         Patient patient = patientRepository.findByUser(user)
                 .orElseThrow(() -> {
@@ -50,9 +50,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public ApiResponse<PatientDTO> updatePatientProfile(PatientDTO patientDTO) {
-        User user = userService.getCurrentUser();
+        User user = userService.getCurrentUsers();
         log.info("Attempting to retrieve patient profile for current user for Update");
-        User currentUser = userService.getCurrentUser();
+        User currentUser = userService.getCurrentUsers();
         log.debug("Current user identified. User ID: {}, Email: {} || ", user.getId(), user.getEmail());
         Patient patient = patientRepository.findByUser(currentUser)
                 .orElseThrow(() -> {
