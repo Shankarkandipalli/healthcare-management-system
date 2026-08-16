@@ -9,6 +9,8 @@ import java.util.List;
 @Builder
 public class LoginResponse {
 
+    private String name;
+    private String email;
     private String token;
     private List<String> roles;
 
