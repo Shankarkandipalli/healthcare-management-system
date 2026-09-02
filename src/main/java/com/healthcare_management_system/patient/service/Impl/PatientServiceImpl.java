@@ -50,16 +50,16 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public ApiResponse<PatientDTO> updatePatientProfile(PatientDTO patientDTO) {
-        User user = userService.getCurrentUsers();
+       // User user = userService.getCurrentUsers();
         log.info("Attempting to retrieve patient profile for current user for Update");
         User currentUser = userService.getCurrentUsers();
-        log.debug("Current user identified. User ID: {}, Email: {} || ", user.getId(), user.getEmail());
+log.debug("Current user identified. User ID: {}, Email: {} || ", currentUser.getId(), currentUser.getEmail());
         Patient patient = patientRepository.findByUser(currentUser)
                 .orElseThrow(() -> {
-                    log.warn("Patient profile not found. User ID: {}|| Email: {}", user.getId(), user.getEmail());
-                    return new NotFoundException("Patient profile not found for user: " + user.getEmail());
+                    log.warn("Patient profile not found. User ID: {}|| Email: {}", currentUser.getId(), currentUser.getEmail());
+                    return new NotFoundException("Patient profile not found for user: " + currentUser.getEmail());
                 });
-        log.info("Patient profile retrieved successfully. Patient ID: {}, || User ID: {}", patient.getId(), user.getId());
+        log.info("Patient profile retrieved successfully. Patient ID: {}, || User ID: {}", patient.getId(), currentUser.getId());
         if (patientDTO.getFirstName() != null) {
             patient.setFirstName(patientDTO.getFirstName());
         }
@@ -83,7 +83,7 @@ public class PatientServiceImpl implements PatientService {
         }
 
         Patient updatedPatient = patientRepository.save(patient);
-        log.info("Patient profile updated successfully. Patient ID: {}, User ID: {}", updatedPatient.getId(), user.getId());
+        log.info("Patient profile updated successfully. Patient ID: {}, User ID: {}", updatedPatient.getId(), currentUser.getId());
         PatientDTO updatedPatientDTO = modelMapper.map(updatedPatient, PatientDTO.class);
         log.debug("Updated Patient entity mapped to PatientDTO successfully. Patient ID: {}", updatedPatient.getId());
         return ApiResponse.<PatientDTO>builder()

@@ -6,7 +6,7 @@ import com.healthcare_management_system.response.ApiResponse;
 
 import java.util.List;
 
-public interface DoctoraService {
+public interface DoctorService {
 
     ApiResponse<DoctorDTO> getDoctorProfile();
 

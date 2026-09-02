@@ -7,6 +7,8 @@ import com.healthcare_management_system.patient.entity.Patient;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -19,8 +21,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private String meetingLink;
     private String purposeOfConsultation;
     private String initialSymptoms;

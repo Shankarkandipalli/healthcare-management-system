@@ -12,6 +12,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Setter
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
@@ -26,7 +28,8 @@ public class AppointmentDTO {
     @NotNull(message = "Start time is required for the appointment.")
     @Future(message = "Appointment must be scheduled for a future date and time.")
     private LocalDateTime startTime;
-    private String endTime;
+    @NotNull(message = "End time is required for the appointment.")
+    private LocalDateTime endTime;
     private String meetingLink;
     private String purposeOfConsultation;
     private String initialSymptoms;
