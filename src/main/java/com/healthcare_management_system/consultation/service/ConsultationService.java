@@ -6,6 +6,7 @@ import com.healthcare_management_system.response.ApiResponse;
 import java.util.List;
 
 public interface ConsultationService {
+
     ApiResponse<ConsultationDTO> createConsultation(ConsultationDTO consultationDTO);
 
     ApiResponse<ConsultationDTO> getConsultationByAppointmentId(Long appointmentId);

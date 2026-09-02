@@ -91,6 +91,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(registrationRequest.getEmail())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .phoneNumber(registrationRequest.getPhoneNumber())
+
                 .roles(new HashSet<>(roles))
                 .build();
 
@@ -127,7 +128,18 @@ public class AuthServiceImpl implements AuthService {
         sendRegistrationEmail(registrationRequest, savedUser);
 
         // 9. Convert User entity to DTO
+       // UserDTO userDTO = modelMapper.map(savedUser, UserDTO.class);
+
+        // 9. Convert User entity to DTO
         UserDTO userDTO = modelMapper.map(savedUser, UserDTO.class);
+
+        if (isDoctor) {
+            Doctor doctor = doctorRepository.findByUser(savedUser)
+                    .orElseThrow(() -> new NotFoundException("Doctor profile not found"));
+
+            userDTO.setSpecialization(doctor.getSpecialization().name());
+            userDTO.setLicenseNumber(doctor.getLicenseNumber());
+        }
 
         // 10. Return success response
         return ApiResponse.<UserDTO>builder()

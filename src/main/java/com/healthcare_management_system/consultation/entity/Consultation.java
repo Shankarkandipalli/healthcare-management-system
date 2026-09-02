@@ -4,6 +4,7 @@ import com.healthcare_management_system.appointment.entitiy.Appointment;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -18,8 +19,7 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String consultationDate;
-    private String consultationTime;
+    private LocalDateTime consultationDate;
 
     @Lob
     private  String subjectiveNote;

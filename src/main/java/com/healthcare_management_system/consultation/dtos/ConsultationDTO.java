@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,11 +14,16 @@ import lombok.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultationDTO {
     private Long id;
-    private Long AppointmentId;
-    private String consultationDate;
-    private String consultationTime;
-    private String subjectiveNote;
-    private String observationFinding;
+
+    private Long appointmentId;
+
+    private LocalDateTime consultationDate;
+
+    private String subjectiveNotes;
+
+    private String objectiveFindings;
+
     private String assessment;
+
     private String plan;
 }
